@@ -1,15 +1,12 @@
-from Endereco import Endereco
-
-
 class Pessoa:
     nome: str
     cpf: int
-    endereco: Endereco
+    cep: int
 
-    def __init__(self, nome, cpf, endereco):
+    def __init__(self, nome, cpf, cep):
         self.nome = nome
         self.cpf = cpf
-        self.endereco = endereco
+        self.cep = cep
 
     def get_nome(self):
         return self.nome
@@ -17,8 +14,8 @@ class Pessoa:
     def get_cpf(self):
         return self.cpf
 
-    def get_endereco(self):
-        return self.endereco
+    def get_cep(self):
+        return self.cep
 
     def set_nome(self, nome):
         self.nome = nome
@@ -26,5 +23,5 @@ class Pessoa:
     def set_cpf(self, cpf):
         self.cpf = cpf
 
-    def set_endereco(self, endereco):
-        self.endereco = endereco
+    def set_cep(self, cep):
+        self.cep = cep

@@ -6,4 +6,4 @@ class Cliente(Pessoa):
 
     def __init__(self, nome, cpf, endereco, carrinho):
         super().__init__(nome, cpf, endereco)
-        self.carrinho = carrinho
+        self.carrinho = []
