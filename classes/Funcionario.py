@@ -1,4 +1,4 @@
-from Pessoa import Pessoa
+from classes.Pessoa import Pessoa
 
 
 class Funcionario(Pessoa):

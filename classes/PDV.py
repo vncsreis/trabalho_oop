@@ -1,5 +1,6 @@
 from classes.Validacao import Validacao
 from classes.Interface import Interface
+from recursos.Pessoas import Pessoas
 
 
 class PDV(Interface):
@@ -8,9 +9,18 @@ class PDV(Interface):
     valor_total: float
     cod_compra = 0
 
+    def sair(self):
+        self.input_com_decoracao(
+            "PDV finalizado. Pressione qualquer tecla para continuar."
+        )
+
     def compra(self):
-        cpf = self.informar_cliente()
-        print(f"CPF digitado foi: {cpf}")
+        cliente = self.informar_cliente()
+        if cliente == "SAIR":
+            self.sair()
+            return
+
+        print(cliente)
 
     def informar_cliente(self):
         op_cpf = self.input_com_decoracao("Possui cadastro conosco? [S/N]")
@@ -40,9 +50,24 @@ class PDV(Interface):
                 cpf = self.input_com_decoracao("Digite o CPF novamente: ")
 
         else:
-            cpf = None
+            return None
 
-        return cpf
+        cliente = Pessoas.encontrar_cpf(cpf)
+
+        if cliente == None:
+            cont_op = self.input_com_decoracao(
+                "Cadastro não encontrado! Faça cadastro no menu correspondente.\n    Deseja continuar com a compra sem cadastro? [S/N]"
+            )
+
+            while not Validacao.bool(cont_op):
+                cont_op = self.input_com_decoracao(
+                    "Resposta inválida. Deseja continuar com a compra sem cadastro? [S/N]"
+                )
+
+            if cont_op.upper() == "S":
+                return None
+            else:
+                return "SAIR"
 
     def imprimir_com_decoracao(self, texto):
         self.clear()
