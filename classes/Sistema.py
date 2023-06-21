@@ -11,7 +11,9 @@ class Sistema:
     def __init__(self):
         self.estoque = Estoque([])
         self.pdv = PDV()
-        self.menu = Menu(["Teste 1", "Teste 2"])
+        self.menu = Menu(["PDV", "Estoque", "Cadastro"])
 
     def run(self):
         selec = self.menu.detectar_op()
+        if selec == 1:
+            self.pdv.compra()
