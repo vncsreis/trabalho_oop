@@ -19,3 +19,6 @@ class Validacao:
 
     def cpf(cpf):
         return validar_cpf(cpf)
+
+    def int(cod):
+        return cod.isnumeric()
