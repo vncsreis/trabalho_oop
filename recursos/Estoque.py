@@ -2,24 +2,7 @@ from classes.Produto import Produto
 
 
 class Estoque:
-    produtos = [
-        {
-            produto: Produto("Arroz", 5.99),
-            quantidade: 100,
-        },
-        {
-            produto: Produto("Feijão", 6.99),
-            quantidade: 50,
-        },
-        {
-            produto: Produto("Macarrão", 3.99),
-            quantidade: 100,
-        },
-        {
-            produto: Produto("Sabonete", 1.99),
-            quantidade: 100,
-        },
-    ]
+    id_atual = 1
 
     def __init__(self, produtos):
         self.produtos = produtos
@@ -43,3 +26,12 @@ class Estoque:
             if prod.get("produto").get_id() == produto.id:
                 return prod
         return None
+
+    def cadastrar_produto(self, nome, valor, qtd):
+        novo_produto = Produto(nome, valor)
+        for p in self.produtos:
+            if novo_produto.get_nome().upper() == p.get("produto").get_nome():
+                print("Produto já cadastrado! Tente novamente com outro produto.")
+                return
+        self.produtos.append({produto: novo_produto, quantidade: qtd})
+        print("Produto cadastrado com sucesso.")
